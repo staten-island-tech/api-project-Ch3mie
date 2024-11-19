@@ -2,35 +2,28 @@ import "../CSS/style.css";
 import { DOMselectors } from "./DOM.js";
 
 async function getData() {
-  //fetch returns a promise
   try {
     const response = await fetch(
       "https://dragonball-api.com/api/characters?limit=10000"
     );
-    //guard clause
-    if (response.status != 200) {
-      throw new Error(response);
-    } else {
-      const data = await response.json();
-      return data.items;
+
+    if (response.status !== 200) {
+      throw new Error(`HTTP Error: ${response.status}`);
     }
+
+    const data = await response.json();
+
+    console.log(data);
+
+    data.items.forEach((character) => {
+      console.log(character.name);
+    });
   } catch (error) {
-    console.log(error);
-    alert("sorry could not find that champion");
+    console.error("Error fetching data:", error);
+    alert("Sorry, could not find character");
   }
 }
 
-async function showImages() {
-  let characters = await getData();
-  console.log(characters);
-  characters.forEach((char) =>
-    DOMselectors.container.insertAdjacentHTML(
-      "beforeend",
-      `
-    <img src="${char.image}"/>
-    `
-    )
-  );
-}
+getData();
 
-showImages();
+function createcards() {}

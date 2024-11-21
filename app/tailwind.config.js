@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./index.html",
-    "./main.js",
+    "./JS/main.js",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/daisyui/dist/**/*.js", // Fixed typo
   ],

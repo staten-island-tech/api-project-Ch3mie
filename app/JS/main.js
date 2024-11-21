@@ -26,21 +26,20 @@ async function getData() {
 }
 
 getData();
-
 function createcards(img, desc, title) {
   DOMselectors.container.insertAdjacentHTML(
     "beforeend",
-    `<div class="card bg-base-100 w-96 shadow-xl">
-       <figure>
-         <img src="${img}" alt="${desc}" />
-       </figure>
-       <div class="card-body">
-         <h2 class="card-title">${title}</h2>
-         <p>${desc}</p>
-         <div class="card-actions justify-end">
-           <button class="btn btn-primary">Buy Now</button>
-         </div>
-       </div>
-     </div>`
+    `<div class="card bg-base-100 w-96 h-120 shadow-xl flex flex-col justify-between items-center">
+      <figure class="flex justify-center h-72 w-full overflow-hidden">
+        <img src="${img}" alt="${desc}" class="rounded-xl object-contain w-full h-full" />
+      </figure>
+      <div class="card-body text-center flex-1 flex flex-col justify-center items-center">
+        <h2 class="card-title text-xl mb-4">${title}</h2>
+        <p class="text-lg mb-4">${desc}</p>
+        <div class="card-actions flex justify-center w-full">
+          <button class="btn btn-primary w-full">Learn More</button>
+        </div>
+      </div>
+    </div>`
   );
 }

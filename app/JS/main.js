@@ -16,7 +16,6 @@ async function getData() {
     console.log(data);
 
     data.items.forEach((character) => {
-      console.log(character.name);
       createcards(
         character.image,
         character.race,
@@ -48,4 +47,11 @@ function createcards(img, race, title, desc) {
       </div>
     </div>`
   );
+}
+
+const learnmorebutton = DOMselectors.learnmore;
+function call2() {
+  learnmorebutton.addEventListener("click", (event) => {
+    event.preventDefault();
+  });
 }

@@ -29,7 +29,6 @@ async function getData() {
   }
 }
 
-getData();
 function createcards(img, race, title, desc) {
   DOMselectors.container.insertAdjacentHTML(
     "beforeend",
@@ -49,9 +48,20 @@ function createcards(img, race, title, desc) {
   );
 }
 
-const learnmorebutton = DOMselectors.learnmore;
+function reset() {
+  DOMselectors.container.innerHTML = "";
+}
+
 function call2() {
-  learnmorebutton.addEventListener("click", (event) => {
-    event.preventDefault();
+  DOMselectors.container.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "learn") {
+      event.preventDefault();
+      console.log("Learn More button clicked!");
+
+      reset();
+    }
   });
 }
+
+call2();
+getData();

@@ -12,7 +12,7 @@ async function getData() {
     }
 
     const data = await response.json();
-
+    call2(data);
     console.log(data);
 
     data.items.forEach((character) => {
@@ -20,7 +20,8 @@ async function getData() {
         character.image,
         character.race,
         character.name,
-        character.affiliation
+        character.affiliation,
+        character.id
       );
     });
   } catch (error) {
@@ -29,7 +30,7 @@ async function getData() {
   }
 }
 
-function createcards(img, race, title, desc) {
+function createcards(img, race, title, desc, id) {
   DOMselectors.container.insertAdjacentHTML(
     "beforeend",
     `<div class="card bg-base-100 w-96 h-120 shadow-xl flex flex-col justify-between items-center">
@@ -41,7 +42,7 @@ function createcards(img, race, title, desc) {
         <p class="text-lg mb-4">${race}</p>
         <p class="text-lg mb-4">${desc}</p>
         <div class="card-actions flex justify-center w-full">
-          <button class="btn btn-primary w-full" id="learn">Learn More</button>
+          <button class="btn btn-primary w-full" id="learn" data-id="${id}">Learn More</button>
         </div>
       </div>
     </div>`
@@ -52,16 +53,20 @@ function reset() {
   DOMselectors.container.innerHTML = "";
 }
 
-function call2() {
+function call2(data) {
   DOMselectors.container.addEventListener("click", (event) => {
     if (event.target && event.target.id === "learn") {
       event.preventDefault();
-      console.log("Learn More button clicked!");
-
-      reset();
+      const apiData = data.items;
+      const selectedcharacter = apiData.find(
+        (character) => character.id == event.target.id
+      );
+      console.log("You did it! :D");
+      if (selectedcharacter) {
+        reset();
+      }
     }
   });
 }
 
-call2();
 getData();

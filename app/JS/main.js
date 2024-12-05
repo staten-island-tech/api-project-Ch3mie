@@ -37,7 +37,7 @@ function displayCards(data) {
 }
 
 function createCard(img, race, title, desc, ki, maxKi, id) {
-  DOMSelectors.container.className =
+  DOMselectors.container.className =
     "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center";
   DOMselectors.container.insertAdjacentHTML(
     "beforeend",
@@ -73,7 +73,9 @@ function attachEventListeners(data) {
 
 function displayCharacterDetails(character, allData) {
   clearContainer();
-  DOMselectors.container2.insertAdjacentHTML(
+  DOMselectors.container.className =
+    "flex items-center justify-center h-screen w-screen";
+  DOMselectors.container.insertAdjacentHTML(
     "beforeend",
     `<div class="card bg-base-100 w-[500px] h-[600px] shadow-xl flex flex-col justify-between items-center p-6">
   <figure class="flex justify-center h-[300px] w-full overflow-hidden">
